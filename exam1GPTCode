@@ -1,0 +1,84 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace test
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            int sum = 0;
+            int number;
+            int count = 0;
+            bool continueInput = true;
+
+            // 1st round of input
+            while (true)
+            {
+                Console.Write("Please enter a positive integer: ");
+                number = int.Parse(Console.ReadLine());
+
+                if (number > 0)
+                {
+                    sum += number;
+                    count++;
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Your number cannot be less than or equal zero. Please input again:");
+                }
+            }
+
+            // Up to 4 more rounds of input
+            while (count < 5 && continueInput)
+            {
+                Console.Write("Do you want to enter another number? (yes/no): ");
+                string response = Console.ReadLine().ToLower();
+
+                if (response == "yes")
+                {
+                    Console.Write("Please enter a positive integer: ");
+                    number = int.Parse(Console.ReadLine());
+                    sum += number;
+                    count++;
+                }
+                else if (response == "no")
+                {
+                    continueInput = false;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid response. Please enter 'yes' or 'no'.");
+                }
+
+                if (count == 5)
+                {
+                    Console.WriteLine("You have already entered five numbers as limit.");
+                }
+            }
+            
+                if (sum % 3 == 0 && sum % 5 == 0)
+            { 
+                    Console.WriteLine($"{sum} FizzBuzz");
+                }
+                else if (sum % 3 == 0)
+                {
+                    Console.WriteLine(+ sum + " Fizz");
+                }
+                else if (sum % 5 == 0)
+                {
+                    Console.WriteLine( + sum + " Buzz");
+                }
+                else
+                {
+                    Console.WriteLine(sum);
+                }
+            
+            Console.ReadKey();
+        }
+    }
+}
